@@ -14,16 +14,15 @@ module.exports = {
             if(isUserExist){
                 throw new Error('User already exist with email', emailValue)
             }
-
+            
             password= await bcrypt.hash(password, 8);
-
+            
             const user = await User.create({
                 fullName, 
-                email : emailValue  ,
+                email : emailValue,
                 password : password, 
                 role
             })
-
             return user;
         } catch (error) {
             throw new Error(error.message);

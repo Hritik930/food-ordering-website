@@ -7,7 +7,7 @@ const register = async(req,res) => {
         const user = await userServices.createUser(req.body);
         const jwt = generateToken(user._id);
         // await cartServices.createCart(user);
-        return res.status(201, user).send({jwt, message:"register success"});
+        return res.status(201, user).send({jwt, message:"register success", user});
     } catch (error) {
         return res.status(500).send({error:error.message})
     }
@@ -23,7 +23,7 @@ const login = async(req, res) => {
         if(!isPasswordValid) return res.status(401).send({message:"invalid password"}
             )
             const jwt = generateToken(user._id);
-            return res.status(200).send({jwt, message:"login success"});
+            return res.status(200).send({jwt, message:"login success", user});
     } catch (error) {
         return res.status(500).send({error:error.message})
     }
