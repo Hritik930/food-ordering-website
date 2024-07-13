@@ -31,16 +31,16 @@ module.exports = {
 
 
     async getUserByEmail(email){
-       try {
-           const user = await User.findOne({email:email});
-           if(!user){
+        try {
+            const user = await User.findOne({emailValue:email});
+            if(!user){
                 throw new Error('User not found')
             }
             return user;
         } catch (error) {
-                throw new Error(error.message);
-        }
-    },
+            throw new Error(error.message);
+        }
+    },
 
     async findUserById(userId){
         try {
